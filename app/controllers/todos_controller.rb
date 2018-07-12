@@ -20,6 +20,16 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
 
   end
+  def index
+    @todos=Todo.all
+  end
+  def destroy 
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    flash[:notice] = "Todo is destroyed successfully"
+    redirect_to todos_path
+  end
+
   def update
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
